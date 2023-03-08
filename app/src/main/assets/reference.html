@@ -43,7 +43,7 @@
     .black {
         background-color: black;
     }
-    .slow {
+    .blink {
         animation: blink 1000ms infinite;
         animation-timing-function: steps(2, jump-none);
     }
@@ -51,12 +51,23 @@
         animation: blink 500ms infinite;
         animation-timing-function: steps(2, jump-none);
     }
-    @keyframes blink {
-        100% {
-            background-color: black;
-        }
+    .slow {
+        animation: blink 2000ms infinite;
+        animation-timing-function: steps(2, jump-none);
     }
-    .slow-white {
+    .double-blink-red {
+        animation: double-blink-orange 1000ms infinite;
+        animation-timing-function: steps(3, jump-none);
+    }
+    .double-blink-orange {
+        animation: double-blink-orange 1000ms infinite;
+        animation-timing-function: steps(3, jump-none);
+    }
+    .double-blink-green {
+        animation: double-blink-green 1000ms infinite;
+        animation-timing-function: steps(3, jump-none);
+    }
+    .blink-white {
         animation: blink-white 1000ms infinite;
         animation-timing-function: steps(2, jump-none);
     }
@@ -64,9 +75,69 @@
         animation: blink-white 1000ms infinite;
         animation-timing-function: steps(2, jump-none);
     }
+    .blink-orange {
+        animation: blink-orange 1000ms infinite;
+        animation-timing-function: steps(2, jump-none);
+    }
     .slow-orange {
         animation: blink-orange 2000ms infinite;
         animation-timing-function: steps(2, jump-none);
+    }
+    @keyframes blink {
+        100% {
+            background-color: black;
+        }
+    }
+    @keyframes double-blink-red {
+        0% {
+            background-color: red;
+        }
+        59% {
+            background-color: red;
+        }
+        60% {
+            background-color: black;
+        }
+        80% {
+            background-color: red;
+        }
+        100% {
+            background-color: black;
+        }
+    }
+    @keyframes double-blink-orange {
+        0% {
+            background-color: orange;
+        }
+        59% {
+            background-color: orange;
+        }
+        60% {
+            background-color: black;
+        }
+        80% {
+            background-color: orange;
+        }
+        100% {
+            background-color: black;
+        }
+    }
+    @keyframes double-blink-green {
+        0% {
+            background-color: green;
+        }
+        59% {
+            background-color: green;
+        }
+        60% {
+            background-color: black;
+        }
+        80% {
+            background-color: green;
+        }
+        100% {
+            background-color: black;
+        }
     }
     @keyframes blink-white {
         100% {
@@ -92,8 +163,11 @@
     summary {
         font-size: 24px;
     }
-
-
+    code {
+        background-color: lightgray;
+        border-radius: 2px;
+        padding: 1px 2px;
+    }
 </style>
 <body>
 
@@ -113,11 +187,11 @@
                         <td colspan="2" class="bold">Power</td>
                     </tr>
                     <tr>
-                        <td class="blue led">&nbsp;</td>
-                        <td>(blinking) Powering Up</td>
+                        <td class="blue blink led"> </td>
+                        <td>Powering Up</td>
                     </tr>
                     <tr>
-                        <td class="blue led">&nbsp;</td>
+                        <td class="blue led"> </td>
                         <td>Powered Up</td>
                     </tr>
                 </table>
@@ -131,19 +205,19 @@
                         <td colspan="2" class="bold">Wifi</td>
                     </tr>
                     <tr>
-                        <td class="led">Off</td>
+                        <td class="black led"> </td>
                         <td>Needs Programming</td>
                     </tr>
                     <tr>
-                        <td class="red led">&nbsp;</td>
+                        <td class="red led"> </td>
                         <td>AP, unlinked</td>
                     </tr>
                     <tr>
-                        <td class="orange led">&nbsp;</td>
+                        <td class="orange led"> </td>
                         <td>AP, linked</td>
                     </tr>
                     <tr>
-                        <td class="green led">&nbsp;</td>
+                        <td class="green led"> </td>
                         <td>Bridge mode, linked</td>
                     </tr>
                 </table>
@@ -163,15 +237,15 @@
                         <td colspan="2" class="bold">Power</td>
                     </tr>
                     <tr>
-                        <td class="green led">&nbsp;</td>
+                        <td class="green led"> </td>
                         <td>OK</td>
                     </tr>
                     <tr>
-                        <td class="orange led">&nbsp;</td>
+                        <td class="orange led"> </td>
                         <td>Brownout</td>
                     </tr>
                     <tr>
-                        <td class="red led">&nbsp;</td>
+                        <td class="red led"> </td>
                         <td>Fault, check for short</td>
                     </tr>
                 </table>
@@ -185,11 +259,11 @@
                         <td colspan="2" class="bold">Status</td>
                     </tr>
                     <tr>
-                        <td class="led">(Off)</td>
+                        <td class="black led"> </td>
                         <td>OK</td>
                     </tr>
                     <tr>
-                        <td class="orange led">&nbsp;</td>
+                        <td class="orange led"> </td>
                         <td>Re-image</td>
                     </tr>
                 </table>
@@ -203,7 +277,8 @@
                         <td colspan="2" class="bold">Radio</td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="led">Ignore</td>
+                        <td class="black led"> </td>
+                        <td>Ignore</td>
                     </tr>
                 </table>
             </td>
@@ -216,19 +291,19 @@
                         <td colspan="2" class="bold">Comm</td>
                     </tr>
                     <tr>
-                        <td class="led">(Off)</td>
+                        <td class="black led"> </td>
                         <td>No Comms</td>
                     </tr>
                     <tr>
-                        <td class="red led">&nbsp;</td>
-                        <td>(blinking) Comms, no code</td>
+                        <td class="red blink led"> </td>
+                        <td>Comms, no code</td>
                     </tr>
                     <tr>
-                        <td class="red led">&nbsp;</td>
-                        <td>(solid) E-Stop</td>
+                        <td class="red led"> </td>
+                        <td>E-Stop</td>
                     </tr>
                     <tr>
-                        <td class="green led">&nbsp;</td>
+                        <td class="green led"> </td>
                         <td>OK</td>
                     </tr>
                 </table>
@@ -242,19 +317,19 @@
                         <td colspan="2" class="bold">Mode</td>
                     </tr>
                     <tr>
-                        <td class="led">(Off)</td>
+                        <td class="black led"></td>
                         <td>Disabled</td>
                     </tr>
                     <tr>
-                        <td class="orange led">&nbsp;</td>
+                        <td class="orange led"> </td>
                         <td>Auto</td>
                     </tr>
                     <tr>
-                        <td class="green led">&nbsp;</td>
+                        <td class="green led"> </td>
                         <td>Teleop</td>
                     </tr>
                     <tr>
-                        <td class="red led">&nbsp;</td>
+                        <td class="red led"> </td>
                         <td>Test</td>
                     </tr>
                 </table>
@@ -274,19 +349,19 @@
                         <td colspan="2" class="bold">Brushless Mode</td>
                     </tr>
                     <tr>
-                        <td class="cyan slow led">&nbsp;</td>
+                        <td class="cyan blink led"> </td>
                         <td>Brake No Signal</td>
                     </tr>
                     <tr>
-                        <td class="cyan led">&nbsp;</td>
+                        <td class="cyan led"> </td>
                         <td>Brake Valid Signal</td>
                     </tr>
                     <tr>
-                        <td class="magenta slow led">&nbsp;</td>
+                        <td class="magenta blink led"> </td>
                         <td>Coast No Signal</td>
                     </tr>
                     <tr>
-                        <td class="magenta led">&nbsp;</td>
+                        <td class="magenta led"> </td>
                         <td>Coast Valid Signal</td>
                     </tr>
                 </table>
@@ -300,19 +375,19 @@
                         <td colspan="2" class="bold">Brushed Mode</td>
                     </tr>
                     <tr>
-                        <td class="blue slow led">&nbsp;</td>
+                        <td class="blue blink led"> </td>
                         <td>Brake No Signal</td>
                     </tr>
                     <tr>
-                        <td class="blue led">&nbsp;</td>
+                        <td class="blue led"> </td>
                         <td>Brake Valid Signal</td>
                     </tr>
                     <tr>
-                        <td class="yellow slow led">&nbsp;</td>
+                        <td class="yellow blink led"> </td>
                         <td>Coast No Signal</td>
                     </tr>
                     <tr>
-                        <td class="yellow led">&nbsp;</td>
+                        <td class="yellow led"> </td>
                         <td>Coast Valid Signal</td>
                     </tr>
                 </table>
@@ -326,19 +401,19 @@
                         <td colspan="2" class="bold">Fault Conditions</td>
                     </tr>
                     <tr>
-                        <td class="blue slow-orange led">&nbsp;</td>
+                        <td class="blue slow-orange led"> </td>
                         <td>12V Missing</td>
                     </tr>
                     <tr>
-                        <td class="cyan slow-orange led">&nbsp;</td>
+                        <td class="cyan slow-orange led"> </td>
                         <td>Gate Driver Fault</td>
                     </tr>
                     <tr>
-                        <td class="yellow slow-orange led">&nbsp;</td>
+                        <td class="yellow slow-orange led"> </td>
                         <td>CAN Fault</td>
                     </tr>
                     <tr>
-                        <td class="black led">&nbsp;</td>
+                        <td class="black led"> </td>
                         <td>Corrupt Firmware</td>
                     </tr>
                 </table>
@@ -352,23 +427,23 @@
                         <td colspan="2" class="bold">Identification, Updating, and Recovery</td>
                     </tr>
                     <tr>
-                        <td class="magenta fast-white led">&nbsp;</td>
+                        <td class="magenta fast-white led"> </td>
                         <td>Identify</td>
                     </tr>
                     <tr>
-                        <td class="yellow slow-white led">&nbsp;</td>
+                        <td class="yellow blink-white led"> </td>
                         <td>CAN Bootloader Firmware Updating</td>
                     </tr>
                     <tr>
-                        <td class="blue slow-white led">&nbsp;</td>
+                        <td class="blue blink-white led"> </td>
                         <td>CAN Bootloader Firmware Retry</td>
                     </tr>
                     <tr>
-                        <td class="black led">&nbsp;</td>
+                        <td class="black led"> </td>
                         <td>USB Device Firmware Update</td>
                     </tr>
                     <tr>
-                        <td class="black led">&nbsp;</td>
+                        <td class="black led"> </td>
                         <td>Recovery Mode</td>
                     </tr>
                 </table>
@@ -382,27 +457,27 @@
                         <td colspan="2" class="bold">Movement</td>
                     </tr>
                     <tr>
-                        <td class="green fast led">&nbsp;</td>
+                        <td class="green fast led"> </td>
                         <td>Partial Forward</td>
                     </tr>
                     <tr>
-                        <td class="green led">&nbsp;</td>
+                        <td class="green led"> </td>
                         <td>Full Forward</td>
                     </tr>
                     <tr>
-                        <td class="red fast led">&nbsp;</td>
+                        <td class="red fast led"> </td>
                         <td>Partial Reverse</td>
                     </tr>
                     <tr>
-                        <td class="red led">&nbsp;</td>
+                        <td class="red led"> </td>
                         <td>Full Reverse</td>
                     </tr>
                     <tr>
-                        <td class="green slow-white led">&nbsp;</td>
+                        <td class="green blink-white led"> </td>
                         <td>Forward Limit</td>
                     </tr>
                     <tr>
-                        <td class="red slow-white led">&nbsp;</td>
+                        <td class="red blink-white led"> </td>
                         <td>Reverse Limit</td>
                     </tr>
                 </table>
@@ -412,11 +487,200 @@
 </details>
 
 <details>
-    <summary>Talon SRX/Falcon Lights</summary>
+    <summary>Talon/Victor/Falcon Lights</summary>
+
+    <table cellpadding="5" cellspacing="0" class="led-table">
+        <tr>
+            <td>
+                <table class="section-table">
+                    <tr>
+                        <td colspan="3" class="bold">Lights alternate rather than blink</td>
+                    </tr>
+                    <tr>
+                        <td class="black led"> </td>
+                        <td>No Power</td>
+                    </tr>
+                    <tr>
+                        <td class="orange blink led"> </td>
+                        <td>CAN bus detected, robot disabled</td>
+                    </tr>
+                    <tr>
+                        <td class="red slow led"> </td>
+                        <td>CAN bus/PWM is not detected</td>
+                    </tr>
+                    <tr>
+                        <td class="red fast led"> </td>
+                        <td>Fault Detected</td>
+                    </tr>
+                    <tr>
+                        <td class="red blink-orange led"> </td>
+                        <td>Damaged Hardware</td>
+                    </tr>
+                    <tr>
+                        <td class="green blink-orange led"> </td>
+                        <td>In Boot-loader</td>
+                    </tr>
+                    <tr>
+                        <td class="orange fast led"> </td>
+                        <td>Thermal Shutoff (Falcon only)</td>
+                    </tr>
+                    <tr>
+                        <td class="green fast led"> </td>
+                        <td>Forward Movement</td>
+                    </tr>
+                    <tr>
+                        <td class="red fast led"> </td>
+                        <td>Reverse Movement</td>
+                    </tr>
+                    <tr>
+                        <td class="red led"> </td>
+                        <td>Limit Switch/Soft Limit</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </details>
 
 <details>
     <summary>CANivore Lights</summary>
+
+    <table cellpadding="5" cellspacing="0" class="led-table">
+        <tr>
+            <td>
+                <table class="section-table">
+                    <tr>
+                        <td colspan="2" class="bold">STAT</td>
+                    </tr>
+                    <tr>
+                        <td class="red double-blink led"> </td>
+                        <td>Powered but USB not plugged in</td>
+                    </tr>
+                    <tr>
+                        <td class="red fast led"> </td>
+                        <td>USB plugged in but no comms</td>
+                    </tr>
+                    <tr>
+                        <td class="orange double-blink-orange led"> </td>
+                        <td>USB comms, CAN disabled, no power</td>
+                    </tr>
+                    <tr>
+                        <td class="orange blink led"> </td>
+                        <td>USB comms, CAN disabled</td>
+                    </tr>
+                    <tr>
+                        <td class="green double-blink-green led"> </td>
+                        <td>USB comms, CAN enabled, no power</td>
+                    </tr>
+                    <tr>
+                        <td class="green blink led"> </td>
+                        <td>USB comms, CAN enabled</td>
+                    </tr>
+                    <tr>
+                        <td class="green blink-orange led"> </td>
+                        <td>Bootloader</td>
+                    </tr>
+                    <tr>
+                        <td class="red blink-orange led"> </td>
+                        <td>Hardware Damage</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section-table">
+                    <tr>
+                        <td colspan="2" class="bold">WIFI</td>
+                    </tr>
+                    <tr>
+                        <td class="green led"> </td>
+                        <td>Wi-Fi Enabled</td>
+                    </tr>
+                    <tr>
+                        <td class="black led"> </td>
+                        <td>Wi-Fi Disabled</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section-table">
+                    <tr>
+                        <td colspan="2" class="bold">BT</td>
+                    </tr>
+                    <tr>
+                        <td class="green led"> </td>
+                        <td>Bluetooth Enabled</td>
+                    </tr>
+                    <tr>
+                        <td class="black led"> </td>
+                        <td>Bluetooth Disabled</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section-table">
+                    <tr>
+                        <td colspan="2" class="bold">CAN (double blink = termination disabled)</td>
+                    </tr>
+                    <tr>
+                        <td class="red led"> </td>
+                        <td>Voltage too low for CAN bus</td>
+                    </tr>
+                    <tr>
+                        <td class="red fast led"> </td>
+                        <td>No CAN comms</td>
+                    </tr>
+                    <tr>
+                        <td class="orange fast led"> </td>
+                        <td>CAN 2.0b legacy mode</td>
+                    </tr>
+                    <tr>
+                        <td class="green fast led"> </td>
+                        <td>CAN FD Active</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Keyboard Shortcuts</summary>
+
+    <h3>Driver Station</h3>
+
+    <table cellpadding="5" cellspacing="0" class="led-table">
+        <tr>
+            <td>
+                <table class="section-table">
+                    <tr>
+                        <td width="125"><code>F1</code></td>
+                        <td>Joystick rescan</td>
+                    </tr>
+                    <tr>
+                        <td><code>[</code> + <code>]</code> + <code>\</code></td>
+                        <td>Enable Robot</td>
+                    </tr>
+                    <tr>
+                        <td><code>Enter</code></td>
+                        <td>Disable Robot</td>
+                    </tr>
+                    <tr>
+                        <td><code>Space</code></td>
+                        <td>E-Stop</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </details>
 
 <details>
