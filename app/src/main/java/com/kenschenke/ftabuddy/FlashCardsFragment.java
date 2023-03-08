@@ -97,11 +97,19 @@ public class FlashCardsFragment extends Fragment {
             }
         });
 
-        Button buttonReboot = view.findViewById(R.id.buttonReboot);
-        buttonReboot.setOnClickListener(new View.OnClickListener() {
+        Button buttonPreload = view.findViewById(R.id.buttonPreload);
+        buttonPreload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showFlashCard(R.string.flashcard_reboot_robot);
+                showFlashCard(R.string.flashcard_preload_robot);
+            }
+        });
+
+        Button buttonStage = view.findViewById(R.id.buttonStage);
+        buttonStage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFlashCard(R.string.flashcard_stage);
             }
         });
     }

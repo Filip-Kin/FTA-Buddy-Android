@@ -14,7 +14,8 @@
     <string name="flashcard_ethernet">Plug in Ethernet</string>
     <string name="flashcard_come_here">Come Here</string>
     <string name="flashcard_turn_on_robot">Turn on Robot</string>
-    <string name="flashcard_reboot_robot">Reboot Robot</string>
+    <string name="flashcard_preload_robot">Preload?</string>
+    <string name="flashcard_stage">Pick your staged game pieces</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
