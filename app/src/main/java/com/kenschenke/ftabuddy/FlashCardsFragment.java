@@ -112,6 +112,14 @@ public class FlashCardsFragment extends Fragment {
                 showFlashCard(R.string.flashcard_stage);
             }
         });
+
+        Button buttonSwitch = view.findViewById(R.id.buttonSwitch);
+        buttonSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFlashCard(R.string.flashcard_switch);
+            }
+        });
     }
 
     private void showFlashCard(int stringId) {
